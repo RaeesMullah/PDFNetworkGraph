@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>PDFNetworkGraph</title>
+
+        <script src="pdfium.js"></script>
+        <script src="rust_semantic_search.js"></script>
+    </head>
+    <body style="background-color: #18181a; height: 100%; margin: 0; padding: 0;">
+        <script>
+            PDFiumModule().then(async pdfiumModule => {
+                const {
+                    initialize_pdfium_render,
+                    yew_app,
+                } = wasm_bindgen;
+
+                wasm_bindgen("rust_semantic_search_bg.wasm").then(async rustModule => {
+                    console.assert(
+                        initialize_pdfium_render(
+                            pdfiumModule,
+                            rustModule,
+                            false,
+                        ),
+                        "Initialization of pdfium-render failed!"
+                    );
+
+                    await yew_app();
+                });
+            });
+        </script>
+    </body>
+</html>
