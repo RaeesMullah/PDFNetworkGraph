@@ -1,0 +1,25 @@
+[package]
+name = "rust-semantic-search"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib","rlib"]
+path = "src/main.rs"
+
+[dependencies]
+js-sys = "0.3"
+yew = { git = "https://github.com/yewstack/yew/" , features = ["csr"]}
+base64 = "0.13.0"
+gloo = "0.8"
+pdfium-render = "0.8.7"
+wasm-bindgen = "^0"
+wasm-bindgen-futures = "^0"
+once_cell = "1.18.0"
+regex = "1.9.1"
+
+[dependencies.web-sys]
+version = "0.3"
+features = ["File", "DragEvent", "DataTransfer"]
